@@ -20,7 +20,7 @@ branches:
     - dev
 env:
   global:
-    - GH_REF: github.com/NoManReady/master.git
+    - GH_REF: 'github.com/NoManReady/master.git'
 notifications:
   email:
     recipients:
