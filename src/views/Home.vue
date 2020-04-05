@@ -1,18 +1,41 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <el-button @click.native="_onOpenIt" circle class="open-it" type="success">Open It.</el-button>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
   name: 'Home',
-  components: {
-    HelloWorld
+  methods: {
+    _onOpenIt() {
+      this.$router.push({ name: 'Board' })
+    }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.home {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .open-it {
+    width: 150px;
+    height: 150px;
+    margin: auto;
+    background: pink;
+    border-color: darken(pink, 5%);
+    box-shadow: 0 0 10px darken(pink, 5%);
+    opacity: 0.8;
+    &:hover {
+      width: 200px;
+      height: 200px;
+      opacity: 1;
+      border-color: darken(pink, 10%);
+      box-shadow: 0 0 10px darken(pink, 10%);
+    }
+  }
+}
+</style>

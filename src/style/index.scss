@@ -1,0 +1,23 @@
+@import "./libs/reset.scss";
+
+.page-error {
+  width: 50%;
+  margin: 20% auto;
+  text-align: center;
+  .error-inner {
+    font-size: 20px;
+    i{
+      font-size: 40px;
+      color:#666;
+    }
+    .err-text {
+      color: red;
+      text-align: left;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      padding: 10px;
+      margin-top: 15px;
+    }
+  }
+}

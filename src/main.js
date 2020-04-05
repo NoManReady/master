@@ -1,12 +1,87 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
+import Vue from "vue";
+import App from "./App.vue";
+import Page404 from "@/views/404";
+import router from "./router";
+import store from "./store";
+import "@/utils/elementImport";
+import "@/style/index.scss";
+Vue.config.productionTip = false;
 
-Vue.config.productionTip = false
+import {
+  registerMicroApps,
+  runAfterFirstMounted,
+  setDefaultMountApp,
+  addErrorHandler,
+  start
+} from "qiankun";
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+import apps from "./apps";
+
+let app = null;
+function render({ appContent, loading } = {}) {
+  if (!app) {
+    app = new Vue({
+      el: "#master",
+      router,
+      store,
+      data() {
+        return {
+          content: appContent,
+          loading
+        };
+      },
+      render(h) {
+        return h(App);
+      }
+    });
+  } else {
+    app.content = appContent;
+    app.loading = loading;
+  }
+}
+render();
+
+//注册子应用
+registerMicroApps(
+  apps.map(app => {
+    return {
+      ...app,
+      render
+    };
+  }),
+  {
+    beforeLoad: [
+      app => {
+        console.log("before load", app);
+      }
+    ],
+    beforeMount: [
+      app => {
+        console.log("before mount", app);
+      }
+    ],
+    afterUnmount: [
+      app => {
+        console.log("after unload", app);
+      }
+    ]
+  }
+);
+
+// 设置默认子应用
+// setDefaultMountApp("/app/shuyue");
+// 第一个子应用加载完毕回调
+// runAfterFirstMounted(app => {
+//   console.log(app);
+// });
+
+addErrorHandler(e => {
+  let Err = new Vue({
+    render(h) {
+      return h(Page404, { props: { error: JSON.stringify(e, null, 4) } });
+    }
+  });
+  app.content = Err.$mount().$el.outerHTML;
+});
+// 启动微服务
+start({ prefetch: false });

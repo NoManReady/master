@@ -2,6 +2,7 @@
   "name": "master",
   "version": "0.1.0",
   "private": true,
+  "t":"1d9039b53d9d7c8e9b84403e8e9cda858920f919",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
@@ -9,6 +10,7 @@
   "dependencies": {
     "core-js": "^3.6.4",
     "element-ui": "^2.13.0",
+    "qiankun": "^1.4.5",
     "vue": "^2.6.11",
     "vue-router": "^3.1.6",
     "vuex": "^3.1.3"
