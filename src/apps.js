@@ -8,7 +8,7 @@ export default [
     title: "小玥玥！！",
     desc: "炒鸡可爱的小屁孩",
     entry: isProd()
-      ? "https://nomanready.github.io/shuyue"
+      ? "http://shuyue.131407.vip"
       : "//localhost:9001",
     activeRule: getActiveRule(`${prefix}/shuyue`)
   },

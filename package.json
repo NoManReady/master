@@ -2,7 +2,7 @@
   "name": "master",
   "version": "0.1.0",
   "private": true,
-  "t":"1c2194de926b33458f747e008a6da0262a9940f7",
+  "t":"ec09ca9bc19588cde25419270f593d860e6d1af3",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
