@@ -17,14 +17,12 @@ export default {
 
 <style lang="scss" scoped>
 .home {
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   .open-it {
     width: 150px;
     height: 150px;
-    margin: auto;
     background: pink;
     border-color: darken(pink, 5%);
     box-shadow: 0 0 10px darken(pink, 5%);

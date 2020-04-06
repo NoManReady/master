@@ -24,9 +24,9 @@ const routes = [
     props: route => ({ appName: route.params.appName })
   }
 ];
-
+export const ROUTER_MODE = "hash";
 const router = new Router({
-  mode: "history",
+  mode: ROUTER_MODE,
   base: process.env.BASE_URL,
   routes
 });

@@ -7,7 +7,8 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
     <script>
-      if(location.pathname!=='/'){
+      if(location.pathname!=='/'||location.hash.slice(1)!=='/'){
+        location.hash='/'
         location.pathname='/'
       }
     </script>

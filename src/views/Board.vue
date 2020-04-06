@@ -49,7 +49,8 @@ export default {
     flex-wrap: wrap;
     margin: 10px 0 0 10px;
     .app-card {
-      width: 200px;
+      width: calc(50% - 20px);
+      max-width: 300px;
       margin: 0 10px 10px 0;
       height: 200px;
       border: none;

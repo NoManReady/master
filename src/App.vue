@@ -99,7 +99,6 @@ export default {
     }
   }
   .app-main {
-    overflow: hidden;
     padding: 0;
     position: relative;
     display: flex;
