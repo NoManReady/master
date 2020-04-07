@@ -36,6 +36,7 @@ export default {
   methods: {
     _openApp(app) {
       this.$router.push({ name: 'AppRegion', params: { appName: app.name } })
+      this.$root.loading = true
     }
   }
 }
@@ -49,11 +50,11 @@ export default {
     flex-wrap: wrap;
     margin: 10px 0 0 10px;
     .app-card {
-      width: calc(50% - 20px);
+      width: calc(50% - 22px);
       max-width: 300px;
       margin: 0 10px 10px 0;
       height: 200px;
-      border: none;
+      border: 1px solid #eee;
       padding: 5px 5px 0;
       cursor: pointer;
       &:hover {

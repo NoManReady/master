@@ -1,36 +1,22 @@
 <template>
   <div class="app-region">
-    <el-page-header :content="title" @back="_onBack" class="page-header"></el-page-header>
+    <app-loading v-show="$root.loading" />
     <div class="app-wrap" v-html="$root.content"></div>
   </div>
 </template>
 <script>
-import { PageHeader } from 'element-ui'
 import apps from '@/apps'
 import { mapMutations } from 'vuex'
-import { SET_SHOW_HEADER } from '@/store/modules/app'
+import { SET_APP_TITLE } from '@/store/modules/app'
+import Loading from '@/components/Loading'
 export default {
   name: 'app-region',
   components: {
-    [PageHeader.name]: PageHeader
+    [Loading.name]: Loading
   },
   props: ['appName'],
   data() {
     return {}
-  },
-  watch: {
-    $route: {
-      handler(v) {
-        this.setHeaderShow(!v.params.appName)
-      },
-      immediate: true
-    }
-  },
-  created() {
-    this.setHeaderShow(false)
-  },
-  beforeDestroy() {
-    this.setHeaderShow(true)
   },
   computed: {
     title() {
@@ -41,22 +27,21 @@ export default {
       return this.appName
     }
   },
-  methods: {
-    ...mapMutations('app', { setHeaderShow: SET_SHOW_HEADER }),
-    _onBack() {
-      this.$router.push({ name: 'Board' })
-      // this.$root.content = undefined
+  watch: {
+    title: {
+      handler() {
+        this.setAppTitle(this.title)
+      },
+      immediate: true
     }
+  },
+  methods: {
+    ...mapMutations('app', { setAppTitle: SET_APP_TITLE })
   }
 }
 </script>
 <style lang="scss" scoped>
 .app-region {
   background: #fff;
-  .page-header {
-    height: 60px;
-    line-height: 60px;
-    box-shadow: 0 0 5px gray;
-  }
 }
 </style>

@@ -1,31 +1,62 @@
 <template>
   <el-container class="app-container">
     <div class="app-bg"></div>
-    <el-header class="app-header" v-show="$store.getters.showHeader">
-      <div @click="_onHome" class="center">{{title}}</div>
+    <el-header class="app-header">
+      <app-page-header
+        :actions="actions"
+        :show-back="showBack"
+        :title="appTitle"
+        @back="_onBack"
+        @command="_onCommand"
+        v-show="$store.getters.showHeader"
+      ></app-page-header>
     </el-header>
     <el-main class="app-main">
-      <router-view class="app-view"></router-view>
+      <!-- <router-view class="app-view"></router-view> -->
+      <transition enter-active-class="zoomIn" leave-active-class="zoomOut">
+        <router-view class="animated faster app-view"></router-view>
+      </transition>
     </el-main>
   </el-container>
 </template>
 <script>
-import { Header, Main, Container } from 'element-ui'
+import { Main, Container, Header } from 'element-ui'
+import { mapGetters } from 'vuex'
+import AppPageHeader from '@/components/PageHeader'
 export default {
   name: 'master-app',
   components: {
-    [Header.name]: Header,
+    [AppPageHeader.name]: AppPageHeader,
     [Main.name]: Main,
-    [Container.name]: Container
+    [Container.name]: Container,
+    [Header.name]: Header
   },
   data() {
     return {
-      title: '笨鸟还不会飞🐦'
+      actions: [
+        {
+          id: 1,
+          label: '测试点击',
+          disabled: false,
+          command: { name: '我是测试点击' }
+        }
+      ]
+    }
+  },
+  computed: {
+    ...mapGetters(['appTitle']),
+    showBack() {
+      let route = this.$route
+      return route.name !== 'Home'
     }
   },
   methods: {
-    _onHome() {
-      if (this.$route.name !== 'Home') this.$router.push({ name: 'Home' })
+    _onBack() {
+      this.$router.back()
+    },
+    _onCommand(action) {
+      // console.log(action)
+      alert(action.name)
     }
   }
 }
@@ -38,6 +69,7 @@ export default {
   right: 0;
   bottom: 0;
   overflow: hidden;
+  display: flex;
   .app-bg {
     position: absolute;
     top: 0;
@@ -77,33 +109,18 @@ export default {
     }
   }
   .app-header {
-    display: flex;
-    flex-direction: row;
-    opacity: 0.6;
-    background: linear-gradient(
-      90deg,
-      pink,
-      $--color-primary,
-      $--color-warning
-    );
-    .center {
-      flex: 1;
-      text-align: center;
-      cursor: pointer;
-      color: #fff;
-      line-height: 60px;
-      transition: color 0.3s ease-in-out;
-      &:hover {
-        color: pink;
-      }
-    }
+    padding: 0;
   }
   .app-main {
     padding: 0;
     position: relative;
-    display: flex;
+    flex: 1;
+    overflow: hidden;
     .app-view {
-      flex: 1;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      overflow-y: auto;
     }
   }
 }

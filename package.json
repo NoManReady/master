@@ -2,12 +2,13 @@
   "name": "master",
   "version": "0.1.0",
   "private": true,
-  "t":"ec09ca9bc19588cde25419270f593d860e6d1af3",
+  "t": "ec09ca9bc19588cde25419270f593d860e6d1af3",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "animate.css": "^3.7.2",
     "core-js": "^3.6.4",
     "element-ui": "^2.13.0",
     "qiankun": "^1.4.5",
@@ -21,6 +22,7 @@
     "@vue/cli-plugin-vuex": "~4.3.0",
     "@vue/cli-service": "~4.3.0",
     "babel-plugin-component": "^1.1.1",
+    "element-theme-chalk": "^2.13.0",
     "sass": "^1.26.3",
     "sass-loader": "^8.0.2",
     "sass-resources-loader": "^2.0.1",

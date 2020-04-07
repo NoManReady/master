@@ -5,6 +5,7 @@ import router from "./router";
 import store from "./store";
 import "@/utils/elementImport";
 import "@/style/index.scss";
+import 'animate.css'
 Vue.config.productionTip = false;
 
 import {
@@ -16,6 +17,10 @@ import {
 } from "qiankun";
 
 import apps from "./apps";
+
+import gallery from '@/directives/gallery'
+
+Vue.directive(gallery.name,gallery)
 
 let app = null;
 function render({ appContent, loading } = {}) {
@@ -48,24 +53,7 @@ registerMicroApps(
       ...app,
       render
     };
-  }),
-  {
-    beforeLoad: [
-      app => {
-        console.log("before load", app);
-      }
-    ],
-    beforeMount: [
-      app => {
-        console.log("before mount", app);
-      }
-    ],
-    afterUnmount: [
-      app => {
-        console.log("after unload", app);
-      }
-    ]
-  }
+  })
 );
 
 // 设置默认子应用
@@ -78,10 +66,12 @@ registerMicroApps(
 addErrorHandler(e => {
   let Err = new Vue({
     render(h) {
-      return h(Page404, { props: { error: JSON.stringify(e, null, 4) } });
+      let entry = apps.find(app => app.name === e.appName) || {}
+      return h(Page404, { props: { error: JSON.stringify(e, null, 4), href: entry.entry } });
     }
   });
   app.content = Err.$mount().$el.outerHTML;
+  app.loading = false
 });
 // 启动微服务
-start({ prefetch: false });
+start({prefetch: false});
