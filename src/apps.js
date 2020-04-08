@@ -12,7 +12,7 @@ export default [
   },
   {
     name: "linqin",
-    icon: require("@/assets/linqin.jpg"),
+    icon: require("@/assets/music.jpg"),
     title: "林🐷",
     desc: "我是一只无忧虑，憨憨的Pig",
     entry: isProd() ? "https://linqin.131407.vip" : "//127.0.0.1:9002",
@@ -25,5 +25,13 @@ export default [
     desc: "每天写一写，总会变厉害的",
     entry: isProd() ? "https://blog.131407.vip" : "//127.0.0.1:9003",
     activeRule: getActiveRule(`${prefix}/blog`)
+  },
+  {
+    name: "music",
+    icon: require("@/assets/music.jpg"),
+    title: "音乐会",
+    desc: "忙碌的生活需要一点点浪漫",
+    entry: isProd() ? "https://music.131407.vip" : "//127.0.0.1:9004",
+    activeRule: getActiveRule(`${prefix}/music`)
   }
 ];

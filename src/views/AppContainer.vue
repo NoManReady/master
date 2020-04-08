@@ -1,7 +1,7 @@
 <template>
   <div class="app-region">
     <app-loading v-show="$root.loading" />
-    <div class="app-wrap" v-html="$root.content"></div>
+    <div class="app-wrap" v-html="$root.content" v-show="!$root.loading"></div>
   </div>
 </template>
 <script>

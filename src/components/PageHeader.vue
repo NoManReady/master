@@ -79,6 +79,7 @@ export default {
   background: linear-gradient(90deg, pink, $--color-primary, $--color-warning);
   height: 60px;
   width: 100%;
+  display: flex;
   .app-content {
     text-align: center;
     cursor: pointer;
@@ -88,8 +89,8 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding: 0 60px;
-    float: left;
+    flex: 1;
+    font-size: 18px;
     &:hover {
       color: pink;
     }

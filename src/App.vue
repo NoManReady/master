@@ -70,13 +70,14 @@ export default {
   bottom: 0;
   overflow: hidden;
   display: flex;
+  margin: 0 -1px;
   .app-bg {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url(~@/assets/bg.jpg);
+    background-image: url(~@/assets/bg1.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

@@ -19,10 +19,17 @@ import {
 import apps from "./apps";
 
 import gallery from '@/directives/gallery'
+import { SET_APP_TITLE } from '@/store/modules/app'
 
 Vue.directive(gallery.name,gallery)
 
 let app = null;
+router.beforeEach((to,from,next)=>{
+  if(to.meta.title){
+    store.commit('app/SET_APP_TITLE',to.meta.title)
+  }
+  next()
+})
 function render({ appContent, loading } = {}) {
   if (!app) {
     app = new Vue({
@@ -39,7 +46,8 @@ function render({ appContent, loading } = {}) {
         return h(App);
       }
     });
-  } else {
+  } else{
+    // app.__pre_app_content=appContent.replace(/\s*/g,"")
     app.content = appContent;
     app.loading = loading;
   }

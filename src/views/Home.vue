@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="master-home">
     <el-button @click.native="_onOpenIt" circle class="open-it" type="success">Open It.</el-button>
   </div>
 </template>
@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.home {
+.master-home {
   display: flex;
   justify-content: center;
   align-items: center;
